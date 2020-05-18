@@ -20,19 +20,17 @@ import tabControl from '../../components/content/tabControl/tabControl'
 import Bscroll from '../../components/common/scroll/Scroll'
 import TabMenu from './chidComps/TabMenu'
 import ContentCategory from './chidComps/ContentCategory'
-import ContentSubcate from './chidComps/ContentSubcate'
 
 import {debounce} from '../../common/debounce'
 
-import {getCategory,getSubcategory,getCategoryDetail} from '../../network/category'
+import {getCategory,getSubcategory} from '../../network/category'
 
 export default {
   name:'Category',
   data(){
     return{
       categories: [],
-      categoryData:[],
-      currentIndex:-1
+      categoryData:[]
     }
   },
   computed:{
@@ -47,7 +45,6 @@ export default {
       })
     },
     getSubcategory(index){
-      this.currentIndex = index
       const maitKey = this.categories[index].maitKey
       getSubcategory(maitKey).then(res => {
         this.categoryData = res.data.list
@@ -74,8 +71,7 @@ export default {
     tabControl,
     Bscroll,
     TabMenu,
-    ContentCategory,
-    ContentSubcate
+    ContentCategory
   }
 }
 </script>
