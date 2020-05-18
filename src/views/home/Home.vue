@@ -11,8 +11,11 @@
    :probe-type='3' @scroll="contentScroll"
    :pull-upload='true' @pullingUp='loadMore'>
 
-    <home-swiper :banners='banners' @swiperImgLoad='swiperImgLoad'/>
-    <recommend-view :recommends='recommends'></recommend-view>
+    <home-swiper 
+    :banners='banners' ref="swiper"
+     @swiperImgLoad='swiperImgLoad'/>
+    <recommend-view :recommends='recommends' ref="recommend"
+    @remImgLoad='remImgLoad'></recommend-view>
     <feature></feature>
     <tab-control ref="tabControl2" 
     :titles='["流行","新款","精选"]' 
@@ -137,6 +140,9 @@ export default {
       // this.$refs.scroll.refresh()
     },
     swiperImgLoad(){
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
+    },
+    remImgLoad(){
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
     },
     // 网络请求相关

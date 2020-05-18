@@ -22,18 +22,16 @@ export default {
     payload.count = 1
     state.cartList.push(payload) 
   },
-  addition(state){
-    state.cartList.find(item => {
-      return item.count++
-    });
+  addition(state,index){
+    state.cartList[index].count++
   },
-  subtract(state){
-    let num = state.cartList.find(item => item.count);
-   console.log(num);
-   if (num.count >= 1) {
-      num.count--     
+  subtract(state,index){
+   if (state.cartList[index].count > 1) {
+    state.cartList[index].count--   
    }else{
-     num = {}
+    state.cartList.splice(index,1)
+    //  console.log(state.cartList[index]);
+     
     //  console.log(num);
    }
   }

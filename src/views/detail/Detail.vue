@@ -85,7 +85,7 @@ export default {
     })
 
     getRecommend().then((res, error) => {
-      console.log(res);
+      // console.log(res);
       if (error) return
       this.recommendList = res.data.list
     })

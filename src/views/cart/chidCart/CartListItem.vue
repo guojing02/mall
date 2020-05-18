@@ -1,5 +1,5 @@
 <template>
-     <div id="shop-item" v-show="item.count >= 1">
+     <div id="shop-item">
     <div class="item-selector">
       <CheckButton :is-checked='item.checked'
       @click.native='checkClick' />
@@ -13,7 +13,7 @@
       <div class="info-bottom">
         <div class="item-price left">¥{{item.price}}</div>
         
-        <div class="item-count right">
+        <div class="item-count right border">
           <span class="conter" @click="addition">+</span>
           {{item.count}}
           <span class="conter" @click='subtract'>-</span>
@@ -50,10 +50,10 @@ export default {
       this.item.checked = !this.item.checked
     },
     addition(){
-      this.$store.commit('addition')
+      this.$emit('addition')
     },
     subtract(){
-      this.$store.commit('subtract')
+      this.$emit('subtract')
     },
     // isShow(){
     //  this.conter = this.$store.state.cartList.map( item => item.count)
@@ -114,10 +114,20 @@ export default {
     color: orangered;
   }
   .conter{
-    border: 1px solid #f7f7f7;
-    width: 10px;
-    padding: 2px 5px;
+    width: 5.66667vw;
+    padding: 0.53333vw 1.33333vw;
     background-color: var(--color-tint);
     color: #ffffff;
+    border-radius: -16px;
+    box-shadow: inset -1px 1px 11px 2px;
+  }
+  .border{
+    width: 15.2vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: -20px -5px 20vw 0px;
+    border-radius: 50%;
   }
 </style>
