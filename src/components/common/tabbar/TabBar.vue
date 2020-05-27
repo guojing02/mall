@@ -15,7 +15,7 @@ export default {
   display: flex;
   align-items: center;
   background-color: #f7f5f5;
-  position: fixed;
+  position: absolute;
   z-index: 9;
   left: 0;
   bottom: 0;

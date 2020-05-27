@@ -4,11 +4,11 @@
       <div slot="center">个人中心</div>
     </nav-bar>
     <scroll class="scroll" ref="scroll">
-    <UserInfo></UserInfo>
+    <user-info @drawerShow='drawerShow'></user-info>
     <section class="account">
       <div class="account-item">
         <div class="number">
-          <span class="balance">0.00</span>元
+          <span class="balance">9999</span>元
         </div>
         <div class="account-info">我的余额</div>
       </div>
@@ -20,7 +20,7 @@
       </div>
       <div class="account-item">
         <div class="number">
-          <span class="balance">0</span>分
+          <span class="balance">9999</span>分
         </div>
         <div class="account-info">我的积分</div>
       </div>
@@ -36,7 +36,16 @@
     <goods-list :goods='list'></goods-list>
     <div class='tips'>已经拉到底了噢~</div>
     </scroll>
-    
+    <el-drawer
+      title="我是标题"
+      size='80%'
+      direction="ltr"
+      :visible.sync="drawer"
+      :with-header="false">
+      <img class="edit" src="~assets/img/profile/edit.jpg" alt="">
+      <el-button type="primary" :loading="goback" 
+      @click="goBack">退出登录</el-button>
+    </el-drawer>
   </div>
 </template>
 
@@ -67,7 +76,9 @@
           {icon: '#service', iconColor: '#ff8198', info: '我的购物车'},
           {icon: '#download', iconColor: '#ff8198', info: '下载购物APP'},
         ],
-        list:[]
+        list:[],
+        drawer: false,
+        goback:false
       }
     },
     methods:{
@@ -76,7 +87,15 @@
         // console.log(res);
         this.list = res.data.list
       })
-      }
+      },
+      drawerShow(){
+      this.drawer = true
+    },
+    goBack(){
+      window.sessionStorage.clear();
+      this.goback = true
+      this.$router.replace("/login")
+    }
     },
     mounted () {
       this.getHomeGoods()
@@ -156,4 +175,18 @@
     bottom: -20px;
     left: calc(100% - 65%);
   }
+  .edit{
+    width: 100%;
+    height: 93%;
+  }
+  .el-button{
+    width: 100%;
+    height: 7%;
+  }
+  .el-drawer{
+    position: relative;
+    z-index: 13;
+    height: 100% !important;
+  }
+
 </style>

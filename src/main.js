@@ -3,10 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import './plugins/element.js'
+
 import toast from './components/common/toast'
 
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
+import './plugins/element.js'
 
 Vue.config.productionTip = false
 // 添加事件总线对象

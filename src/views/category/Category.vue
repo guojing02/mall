@@ -16,23 +16,21 @@
 
 <script>
 import NavBar from '../../components/common/navbar/NavBar'
-import tabControl from '../../components/content/tabControl/tabControl'
+// import tabControl from '../../components/content/tabControl/tabControl'
 import Bscroll from '../../components/common/scroll/Scroll'
 import TabMenu from './chidComps/TabMenu'
 import ContentCategory from './chidComps/ContentCategory'
-import ContentSubcate from './chidComps/ContentSubcate'
 
 import {debounce} from '../../common/debounce'
 
-import {getCategory,getSubcategory,getCategoryDetail} from '../../network/category'
+import {getCategory,getSubcategory} from '../../network/category'
 
 export default {
   name:'Category',
   data(){
     return{
       categories: [],
-      categoryData:[],
-      currentIndex:-1
+      categoryData:[]
     }
   },
   computed:{
@@ -40,14 +38,13 @@ export default {
   methods:{
     getCategory(){
       getCategory().then(res => {
-        // console.log(res);
+        console.log(res);
         this.categories = res.data.category.list
 
         this.getSubcategory(0)
       })
     },
     getSubcategory(index){
-      this.currentIndex = index
       const maitKey = this.categories[index].maitKey
       getSubcategory(maitKey).then(res => {
         this.categoryData = res.data.list
@@ -71,11 +68,10 @@ export default {
   },
   components:{
     NavBar,
-    tabControl,
+    // tabControl,
     Bscroll,
     TabMenu,
-    ContentCategory,
-    ContentSubcate
+    ContentCategory
   }
 }
 </script>

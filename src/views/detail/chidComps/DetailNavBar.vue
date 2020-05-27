@@ -54,6 +54,7 @@ export default {
     color: var(--color-high-text)
   }
   .back{
-    margin-top: 11px;
+    margin-top: 8px;
+    width:25px
   }
 </style>
