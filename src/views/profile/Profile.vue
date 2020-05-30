@@ -95,6 +95,7 @@
       window.sessionStorage.clear();
       this.goback = true
       this.$router.replace("/login")
+      location.reload()
     }
     },
     mounted () {
