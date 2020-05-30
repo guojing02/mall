@@ -30,7 +30,7 @@ export default {
   name:'Login',
   data(){
     return{
-      loginForm:{username:'',password:''},
+      loginForm:{username:'admin',password:'123456'},
       // 表单验证规则
       loginRules:{
         username:[
