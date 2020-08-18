@@ -15,7 +15,7 @@
         </el-form-item>
         <!-- 按钮 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="loginClick">登录</el-button>
+          <el-button type="primary" @click.once="loginClick">登录</el-button>
           <el-button type="info" @click="resetClick">重置</el-button>
         </el-form-item>
       </el-form>
@@ -51,14 +51,12 @@ export default {
     loginClick(){
       this.$refs.loginRef.validate(async valid => {
         if(!valid) return;
-
         const res = await loginHttp(this.loginForm)
-        console.log(res);
-        
         if(res.meta.status!== 200) return this.$message.error("登录失败!请确认密码！")
-        this.$message.success('登录成功!')
-        
         window.sessionStorage.setItem('token',res.data.token)
+        setTimeout(()=>{
+        location.reload()
+        },50)
         this.$router.replace('/home')
       })
     }
